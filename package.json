@@ -1,0 +1,36 @@
+{
+  "name": "dannys-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "devStart": "nodemon app.js",
+    "build": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bigsaigon333/dannys-api.git"
+  },
+  "keywords": [
+    "api",
+    "nodeJS",
+    "RESTful"
+  ],
+  "author": "danny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bigsaigon333/dannys-api/issues"
+  },
+  "homepage": "https://github.com/bigsaigon333/dannys-api#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^4.1.1",
+    "mongoose": "^5.10.9",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  }
+}
