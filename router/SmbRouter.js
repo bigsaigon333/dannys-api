@@ -3,7 +3,16 @@ const Blog = require("../model/Blog.js");
 
 const router = new express.Router();
 
-router.post("/new.json", async (req, res) => {
+router.get("/", async (req, res) => {
+	try {
+		const Blogs = await Blog.find({}).sort({ createdAt: "desc" });
+		res.json(Blogs);
+	} catch (error) {
+		res.status(400).json({ error: "Something goes wrong" + error });
+	}
+});
+
+router.post("/", async (req, res) => {
 	if (req.body === {}) {
 		res.status(400).json({ error: "There is no content in request body" });
 		return;
@@ -19,7 +28,17 @@ router.post("/new.json", async (req, res) => {
 	}
 });
 
-router.put("/:id/edit.json", async (req, res) => {
+router.get("/:id", async (req, res) => {
+	const { id } = req.params;
+	try {
+		const Post = await Blog.findById(id);
+		res.json(Post);
+	} catch (error) {
+		res.status(400).json({ error: "Something goes wrong" + error });
+	}
+});
+
+router.put("/:id", async (req, res) => {
 	const { id } = req.params;
 	const { title, description } = req.body;
 	try {
@@ -34,30 +53,11 @@ router.put("/:id/edit.json", async (req, res) => {
 	}
 });
 
-router.delete("/:id/delete.json", async (req, res) => {
+router.delete("/:id", async (req, res) => {
 	const { id } = req.params;
 	try {
 		const Post = await Blog.findByIdAndRemove(id);
 		res.json({ success: "Delete succeed!" });
-	} catch (error) {
-		res.status(400).json({ error: "Something goes wrong" + error });
-	}
-});
-
-router.get("/blog_list.json", async (req, res) => {
-	try {
-		const Blogs = await Blog.find({}).sort({ createdAt: "desc" });
-		res.json(Blogs);
-	} catch (error) {
-		res.status(400).json({ error: "Something goes wrong" + error });
-	}
-});
-
-router.get("/blog_list.json/:id", async (req, res) => {
-	const { id } = req.params;
-	try {
-		const Post = await Blog.findById(id);
-		res.json(Post);
 	} catch (error) {
 		res.status(400).json({ error: "Something goes wrong" + error });
 	}
