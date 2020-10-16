@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "devStart": "nodemon app.js",
-    "build": ""
+    "deploy": "git push heroku main"
   },
   "repository": {
     "type": "git",
