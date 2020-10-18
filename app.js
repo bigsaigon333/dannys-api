@@ -9,7 +9,7 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
-app.use(cors());
+app.use(cors({ origin: process.env.ORIGIN, optionsSuccessStatus: 200 }));
 
 const SmbRouter = require("./router/SmbRouter.js");
 
@@ -37,7 +37,7 @@ const SmbRouter = require("./router/SmbRouter.js");
 			// res.status(404).sendFile(path.resolve(__dirname, "src", "404.html"));
 			res.status(404).send("Error");
 		});
-		app.listen(process.env.PORT || 3000, () =>
+		app.listen(process.env.PORT || 5500, () =>
 			console.log("Server is listening")
 		);
 	} catch (error) {
