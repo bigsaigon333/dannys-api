@@ -9,7 +9,9 @@ const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
-app.use(cors({ origin: process.env.ORIGIN, optionsSuccessStatus: 200 }));
+app.use(
+	cors({ origin: JSON.parse(process.env.ORIGIN), optionsSuccessStatus: 200 })
+);
 
 const SmbRouter = require("./router/SmbRouter.js");
 
