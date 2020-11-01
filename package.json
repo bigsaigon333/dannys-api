@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node -r dotenv/config app.js dotenv_config_path=./.env",
-    "devStart": "nodemon -r dotenv/config app.js dotenv_config_path=./.env.dev",
+    "start": "node app.js",
+    "preDevStart": "mongod --dbpath /home/dannykim/data/db > /dev/null &",
+    "devStart": "npm run preDevStart && nodemon app.js",
     "preDeploy": "git push origin main",
     "deploy": "git push heroku main"
   },
@@ -25,12 +26,15 @@
   },
   "homepage": "https://github.com/bigsaigon333/dannys-api#readme",
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "helmet": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.5"

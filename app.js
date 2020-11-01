@@ -2,13 +2,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const helmet = require("helmet");
 const morgan = require("morgan");
-
 const cors = require("cors");
-
 const dotenv = require("dotenv");
 dotenv.config();
 
 const app = express();
+
 app.use(
 	cors({ origin: JSON.parse(process.env.ORIGIN), optionsSuccessStatus: 200 })
 );
